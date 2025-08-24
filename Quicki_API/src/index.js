@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import { sequelize } from "./models/index.js";
 import userRoutes from "./routes/users.js";
 import jobsRoutes from "./routes/jobs.js";
+import applicationsRoutes from "./routes/applications.js";
 
 dotenv.config();
 const app = express();
@@ -21,6 +21,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/jobs", jobsRoutes);
+app.use("/api/applications", applicationsRoutes);
 
 // sequelize
 //   .sync({ alter: true })

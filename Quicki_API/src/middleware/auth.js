@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
+import { Job } from "../models/index.js";
+
 dotenv.config();
 
 export const authenticate = (req, res, next) => {
@@ -8,8 +10,11 @@ export const authenticate = (req, res, next) => {
   if (!authHeader) return res.status(401).json({ error: "Se requiere credenciales." });
 
   const token = authHeader.split(" ")[1];
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
     if (err) return res.status(401).json({ error: "Credencial invalida." });
+    if (await Job.findByPk(decoded.id)) {
+      return res.status(401).json({ error: "Credencial invalida." });
+    }
     req.user = { id: decoded.id, role: decoded.role };
     next();
   });

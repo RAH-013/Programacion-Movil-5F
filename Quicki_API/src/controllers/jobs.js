@@ -16,7 +16,7 @@ export const getJobs = async (req, res) => {
     const jobs = await Job.findAll({
       where,
       order: [["createdAt", "DESC"]],
-      attributes: { exclude: ["updatedAt"] },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
     });
 
     if (!jobs.length) {
@@ -104,7 +104,7 @@ export const createJob = async (req, res) => {
       description,
       location,
       payment,
-      employer_id: userId,
+      employerId: userId,
     });
 
     res.status(201).json({ message: "Trabajo creado." });
