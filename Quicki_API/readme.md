@@ -100,7 +100,7 @@ Producción
   GET /api/jobs
 ```
 
-Trabajador → Todas disponibles.
+Trabajador → Todas disponibles.  
 Empleador → Solo las propias.
 
 #### Ver detalles de una oferta (Ambos)
