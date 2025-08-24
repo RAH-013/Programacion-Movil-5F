@@ -1,4 +1,7 @@
 *node_modules/
+*.sqlite
+src/config/*.sqlite
+
 
 *dist/
 *dist-ssr/
@@ -14,3 +17,4 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+

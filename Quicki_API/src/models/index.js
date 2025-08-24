@@ -5,11 +5,11 @@ import Job from "./job.js";
 import JobApplication from "./applications.js";
 
 // Relación Employer → Job (1:N)
-User.hasMany(Job, { as: "jobsCreated", foreignKey: "employer_id" });
-Job.belongsTo(User, { as: "employer", foreignKey: "employer_id" });
+User.hasMany(Job, { as: "jobsCreated", foreignKey: "employerId" });
+Job.belongsTo(User, { as: "employer", foreignKey: "employerId" });
 
 // Relación Worker ↔ Job (N:M) a través de JobApplication
-User.belongsToMany(Job, { through: JobApplication, as: "appliedJobs", foreignKey: "worker_id" });
-Job.belongsToMany(User, { through: JobApplication, as: "applicants", foreignKey: "job_id" });
+User.belongsToMany(Job, { through: JobApplication, as: "appliedJobs", foreignKey: "workerId" });
+Job.belongsToMany(User, { through: JobApplication, as: "applicants", foreignKey: "jobId" });
 
 export { sequelize, User, Job, JobApplication };

@@ -14,7 +14,7 @@ const Job = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    employer_id: {
+    employerId: {
       type: DataTypes.CHAR(36),
       allowNull: false,
     },

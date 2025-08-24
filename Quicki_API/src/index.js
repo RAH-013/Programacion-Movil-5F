@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { sequelize } from "./models/index.js";
+import userRoutes from "./routes/users.js";
+import jobsRoutes from "./routes/jobs.js";
 
 dotenv.config();
 const app = express();
@@ -17,9 +19,12 @@ app.use(
 
 app.use(express.json());
 
-sequelize
-  .sync({ alter: true })
-  .then(() => console.log("Database synchronized"))
-  .catch((err) => console.error("DB sync error:", err));
+app.use("/api/users", userRoutes);
+app.use("/api/jobs", jobsRoutes);
+
+// sequelize
+//   .sync({ alter: true })
+//   .then(() => console.log("Database synchronized"))
+//   .catch((err) => console.error("DB sync error:", err));
 
 app.listen(PORT, () => console.log(`API REST running on port ${PORT}`));
